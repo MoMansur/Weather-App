@@ -16,7 +16,7 @@ background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%);
     align-items: center;
     border-radius: 15px;
     border: 1px solid black;
-    min-height: 80vh;
+    min-height: 90vh;
     width: 500px;
     padding: 10px;
     text-align: center;
@@ -50,7 +50,7 @@ form{
 
 .cityName{
     color: white;
-    margin-top: 20px;
+    margin-top: 10px;
     font-size: 3.5rem;
 }
 
@@ -87,12 +87,18 @@ form{
 }
 .otherData{
     display: flex;
-    align-items: start;
 }
 
+ul{
+    border: 1px solid lightblue;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    align-items: flex-start;
+}
 .otherData li{
     list-style:circle;
-    align-items: start;
+    text-align: start;
     color: white;
     font-size: 1.1rem;
 }
@@ -112,8 +118,45 @@ form{
 }
 
 .sunset{
-    font-weight: 500    
+    font-weight: 500;
+
+}
+
+.sunset img{
+    color: white;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+}
+
+.sunrise img{
+    color: white;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
 }
 .sunrise{
     font-weight: 500;
+}
+
+.otherDays{
+    display: flex;
+}
+.otherDays img{
+    width: 50px;
+    height: 30px;
+
+}
+
+.day{
+    border: 1px solid lightblue;
+    width: 100px;
+    border-radius: 5px;
+    margin: 1px;
+}
+
+.info{
+    border: 1px solid lightblue;
+    display: flex;
+    justify-content: space-around;
 }
