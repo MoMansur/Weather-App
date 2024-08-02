@@ -5,7 +5,12 @@ body {
     padding: 10px;
 }
 
+/* background: rgb(27,48,50);
+background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%); */
+
+
 .weatherCard{
+    color: white;
     display: block;
     justify-content: center;
     align-items: center;
@@ -41,4 +46,74 @@ form{
 }
 .submitBtn:hover{
     background-color: aquamarine;
+}
+
+.cityName{
+    color: white;
+    margin-top: 20px;
+    font-size: 3.5rem;
+}
+
+#tempRow{
+    display: flex;
+    justify-content: center;
+    /* background-color: aquamarine; */
+}
+
+.tempIcon{
+    width: 180px;
+    margin: 5px;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    height: 80px;
+}
+
+.temp{
+    color: white;
+    font-size: 4rem;
+    
+}
+
+.switchBtn{
+    height: 30px;
+    border: none;
+    border-radius: 20px;
+    margin-top: auto;
+    align-items: end;
+}
+
+.switchBtn:hover{
+    background-color: aquamarine;
+}
+.otherData{
+    display: flex;
+    align-items: start;
+}
+
+.otherData li{
+    list-style:circle;
+    align-items: start;
+    color: white;
+    font-size: 1.1rem;
+}
+.otherData img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    color: white;
+}
+.otherData i{
+    font-size: large;
+}
+
+.sunStatus{
+    display: flex;
+    justify-content:space-around;
+}
+
+.sunset{
+    font-weight: 500    
+}
+.sunrise{
+    font-weight: 500;
 }

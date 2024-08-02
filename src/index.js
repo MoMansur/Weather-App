@@ -34,12 +34,8 @@ const minTemp = weatherData.main.temp_min
 const feelsLike = weatherData.main.feels_like
 const humidity = weatherData.main.humidity
 const pressure = weatherData.main.pressure
-
 const windSpeed = weatherData.wind.speed
-
-
 const temprature = weatherTwo.currentConditions.temp
-
 const address = weatherTwo.resolvedAddress
 const condition = weatherTwo.currentConditions.conditions
 const date = '';
@@ -56,4 +52,16 @@ const tempCel = function fahrenheitToCelsius(fahrenheit){
 
 
 }
+
+const form = document.getElementById('form')
+const searchInput = document.getElementById('searchIn')
+form.addEventListener('submit', (e)=>{
+    e.preventDefault()
+
+    const search = searchInput.value
+    console.log(search)
+    displayWeatherData(search)
+})
+
+
 displayWeatherData('Istanbul')
