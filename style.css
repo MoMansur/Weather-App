@@ -3,10 +3,13 @@ body {
     background: linear-gradient(0deg, rgba(45,234,253,1) 0%, rgba(34,127,195,1) 100%);
     min-height: 100vh;
     padding: 10px;
-}
 
-/* background: rgb(27,48,50);
-background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%); */
+    
+    background: rgb(27,48,50);
+    background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%); 
+
+
+}
 
 
 .weatherCard{
@@ -107,6 +110,7 @@ ul{
     height: 20px;
     margin-right: 5px;
     color: white;
+
 }
 .otherData i{
     font-size: large;
@@ -141,6 +145,9 @@ ul{
 
 .otherDays{
     display: flex;
+    scrollbar-width: 2px;
+    overflow-wrap:normal;
+
 }
 .otherDays img{
     width: 50px;
@@ -160,3 +167,18 @@ ul{
     display: flex;
     justify-content: space-around;
 }
+
+.loader {
+    display: none;
+    border: 16px solid #f3f3f3; /* Light grey */
+    border-top: 16px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
