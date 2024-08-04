@@ -4,9 +4,9 @@ body {
     min-height: 100vh;
     padding: 10px;
 
-    
+/*     
     background: rgb(27,48,50);
-    background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%); 
+    background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%);  */
 
 
 }
@@ -83,6 +83,7 @@ form{
     border-radius: 20px;
     margin-top: auto;
     align-items: end;
+    
 }
 
 .switchBtn:hover{
@@ -160,25 +161,46 @@ ul{
     width: 100px;
     border-radius: 5px;
     margin: 1px;
+    padding: 5px;
 }
 
 .info{
     border: 1px solid lightblue;
     display: flex;
     justify-content: space-around;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
 .loader {
-    display: none;
-    border: 16px solid #f3f3f3; /* Light grey */
-    border-top: 16px solid #3498db; /* Blue */
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+    width: 56px;
+    height: 26.9px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    justify-content: center;
+    background: radial-gradient(circle closest-side,#474bff 90%,#0000) 0%   50%,
+           radial-gradient(circle closest-side,#474bff 90%,#0000) 50%  50%,
+           radial-gradient(circle closest-side,#474bff 90%,#0000) 100% 50%;
+    background-size: calc(100%/3) 13.4px;
+    background-repeat: no-repeat;
+    animation: loader-7ar3yq 1s infinite linear;
+ }
+ 
+ @keyframes loader-7ar3yq {
+    20% {
+       background-position: 0%   0%, 50%  50%,100%  50%;
+    }
+ 
+    40% {
+       background-position: 0% 100%, 50%   0%,100%  50%;
+    }
+ 
+    60% {
+       background-position: 0%  50%, 50% 100%,100%   0%;
+    }
+ 
+    80% {
+       background-position: 0%  50%, 50%  50%,100% 100%;
+    }
+ }

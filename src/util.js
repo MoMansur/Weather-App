@@ -1,5 +1,33 @@
 
+export function getWeatherIcon(condition) {
+    if (condition.includes('Rain') || condition.includes('Cloudy')) {
+        return 'rainy.svg'; 
+    } else if (condition.includes('Rain')) {
+        return 'rainy.svg'; // Example icon filename
+    } else if (condition.includes('cloudy')) {
+        return 'cloudy.svg';
+    } else if (condition.includes('Clear')) {
+        return 'sun.svg'; 
+    } else if (condition.includes('Snow')) {
+        return 'snow.svg'; 
+    } else if (condition.includes('Fog')) {
+        return 'mist.svg'; 
+    } else {
+        return 'rainy.svg'; 
+    }
+}
 
+export function getDayOfWeek(dateString) {
+    const date = new Date(dateString);
+            const daysOfWeek = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 
+        'Thursday', 'Friday', 'Saturday'
+    ];
+            const dayIndex = date.getDay();
+    
+    // Return the day name
+    return daysOfWeek[dayIndex];
+}
 
 export function convertTo12HourFormat(time) {
     const [hours, minutes, seconds] = time.split(':');

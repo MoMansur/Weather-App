@@ -1,6 +1,8 @@
 // Selecting elements and storing in variables
 import { convertTo12HourFormat } from "./util.js";
 import { weatherData } from "./apiFunctions.js";
+import { getDayOfWeek } from "./util.js";
+import { getWeatherIcon } from "./util.js";
 // Form elements
 const formElement = document.getElementById('form');
 const locationIcon = document.querySelector('.locationIcon');
@@ -29,11 +31,11 @@ const sunsetDom = document.querySelector('.sunset');
 
 // Other days elements
 const otherDays = document.querySelector('.otherDays');
-const days = otherDays.querySelectorAll('.day');
+// const days = otherDays.querySelectorAll('.day');
 const dayElement = document.querySelector('.day');
-const dayNameElement = dayElement.querySelector('h6');
-const dayIconElement = dayElement.querySelector('img');
-const dayTempElement = dayElement.querySelector('.dayTemp');
+// const dayNameElement = dayElement.querySelector('h6');
+// const dayIconElement = dayElement.querySelector('img');
+const dayTempElement = document.querySelectorAll('.dayTemp');
 
 
 // Info elements
@@ -43,18 +45,17 @@ const timeZoneDom = document.querySelector('.TimeZone');
 const loaderDom = document.getElementById('loader')
 
 
-
-
 async function displayWeatherData(location) {
     const data = await weatherData(location);
 
     const weatherArr = data.days[0]
     const otherDaysArr = data.days
 
-    for
     console.log(weatherArr)
 
     function displayer(array){
+
+
         const feelsLike = Math.floor(array.feelslike);
         const humidity =  array.windspeed;
         const windSpeed = array.humidity;
@@ -62,10 +63,11 @@ async function displayWeatherData(location) {
 
         const address = array.resolvedAddress;
         const condition = array.conditions;
-        const time = array.datetime
+        const time = data.currentConditions.datetime
+        console.log(data)
         const date = '';
         const snow = array.snow;
-        const timeZone = data.timezone;
+        const timeZone = data.resolvedAddress;
         const description = data.description;
         const sunrise = array.sunrise;
         const sunset = array.sunset;
@@ -79,14 +81,16 @@ async function displayWeatherData(location) {
 
           //APENDERING
         cityName.innerHTML = data.address;
-        temperatureDom.innerHTML = temprature;
+        temperatureDom.innerHTML = `${temprature}°F`;
         descritptionText.innerHTML = condition;
-        timeZoneDom.innerHTML = convertTo12HourFormat(time)
+        timeZoneDom.innerHTML = time
         sunriseDom.innerHTML = sunrise;
         sunsetDom.innerHTML = sunset;
         fullAddress.innerHTML = timeZone;
 
 
+        tempIcon.src = `../src/img/svg/${getWeatherIcon(data.currentConditions.icon)}`
+        
         humidityDom.innerHTML = `${humidity}%`;
         feelsLikeDom.innerHTML = `${feelsLike}°`;
         windSpeedDom.innerHTML = `${windSpeed} km/h`;
@@ -100,25 +104,61 @@ async function displayWeatherData(location) {
  
  
      function celcuisFunction() {
-         const convertion = tempCel(temprature);
+         const convertion = `${tempCel(temprature)}°C`;
          temperatureDom.innerHTML = convertion;
          feelsLikeDom.innerHTML = `${tempCel(feelsLike)}°`;
      }
  
  
-     let isClicked = true;
-     switchButton.addEventListener('click', () => {
-         if (isClicked) {
-             celcuisFunction();
-             switchButton.innerHTML = '°F';
-         } else {
-             temperatureDom.innerHTML = temprature;
-             feelsLikeDom.innerHTML = `${feelsLike}°`;
- 
-         }
-         isClicked = !isClicked;
-     });
+     function displayOtherDays(isCelsius) {
+        // Clear existing content
+        otherDays.innerHTML = '';
+    
+        for (let i = 1; i < 7; i++) {
+            // Determine the temperature based on the unit
+            const temp = isCelsius ? tempCel(otherDaysArr[i].temp) : Math.floor(otherDaysArr[i].temp);
+            const tempUnit = isCelsius ? '°C' : '°F';
+            
+            otherDays.innerHTML += `
+                <div class="day">
+                    <h6>${getDayOfWeek(otherDaysArr[i].datetime)}</h6>
+                    <img src="../src/img/svg/${getWeatherIcon(otherDaysArr[i].conditions)}" alt="">
+                    <h5 class="dayTemp">${temp}${tempUnit}</h5>
+                </div>`;
+        }
     }
+
+
+     function refresher(){
+        otherDays.innerHTML = ""
+        displayOtherDays(false)
+
+     }
+refresher()
+    
+       let isClicked = true;
+       switchButton.addEventListener('click', () => {
+           if (isClicked) {
+               celcuisFunction();
+               switchButton.innerHTML = '°F';
+            otherDays.innerHTML =""
+            displayOtherDays(true)
+              
+            
+           } else {
+              temperatureDom.innerHTML = `${temprature}°F`;
+              feelsLikeDom.innerHTML = `${feelsLike}°`;
+              switchButton.innerHTML = '°C';
+              otherDays.innerHTML =""
+
+              refresher()
+
+           }
+           isClicked = !isClicked;
+       });
+
+    }
+    
     
     displayer(weatherArr)
 
@@ -138,15 +178,18 @@ form.addEventListener('submit', (e) => {
     displayWeatherData(search);
 });
 
-displayWeatherData('Istanbul');
+displayWeatherData('Kenya');
 
 
 export function showLoader() {
     // mainDataDom.innerHTML = "";
     loaderDom.style.display = 'block';
 }
-
-// // Function to hide the loader
 export function hideLoader() {
     loaderDom.style.display = 'none';
 }
+
+
+
+// Example usage
+
