@@ -16,7 +16,7 @@
         <h1>Weather</h1>
     </div>
     <div class="row">
-        <form action="">
+        <form action="" id="form">
             <i class="fa-solid fa-location-dot locationIcon"></i>
             <input type="search" class="searchIn" placeholder="City name">
             <button type="submit" class="submitBtn">Go</button>
@@ -24,7 +24,9 @@
     </div>
 
     <div class="row">
-        <div class="mainData">
+        <div class="mainData" id="mainData">
+            
+        <div class="loader" id="loader"></div>
             <h1 class="cityName">Cairo</h1>
             <p class="date">Sunday 27 August 2024</p>
 
@@ -39,22 +41,45 @@
     </div>
 
     <div class="row">
+        <div class="condition">
+            <p  id="descritptionText">
+                No rain Todya
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="otherData">
             <ul>
                 <li><img src="../src/img/svg/feelsLike.svg" alt="">Feels Like <strong>78.1</strong></li>
                 <li><img src="../src/img/svg/humidity.svg" alt="">Humidity <strong>78.1</strong></li>
-                <li><img src="../src/img/svg/mist.svg" alt="">Wind Speed: <strong>78.1</strong></li>
+                <li><img src="../src/img/svg/wind.svg" alt="">Wind Speed: <strong>78.1</strong></li>
             </ul>
         </div>
     </div>
 
     <div class="sunStatus">
-        <p class="sunrise"><img src="../src/img/svg/sunrise.svg" alt="">Sunrise: 5:00am </p>
-        <p class="sunset"><img src="../src/img/svg/sunset.svg" alt="">Sunset: 9:00am </p>
+        <p class="sunrise"><img src="../src/img/svg/sunrise.svg" alt="">Sunrise: </p>
+        <p class="sunset"><img src="../src/img/svg/sunset.svg" alt="">Sunset: </p>
     </div>
     
     <div class="row">
     <div class="otherDays">
+        <div class="day">
+            <h6>Monday</h6>
+            <img src="../src/img/svg/cloud.svg" alt="">
+            <h5 class="dayTemp">71</h5>
+        </div>
+        <div class="day">
+            <h6>Monday</h6>
+            <img src="../src/img/svg/cloud.svg" alt="">
+            <h5 class="dayTemp">71</h5>
+        </div>
+        <div class="day">
+            <h6>Monday</h6>
+            <img src="../src/img/svg/cloud.svg" alt="">
+            <h5 class="dayTemp">71</h5>
+        </div>
         <div class="day">
             <h6>Monday</h6>
             <img src="../src/img/svg/cloud.svg" alt="">
@@ -69,16 +94,6 @@
             <h6>Monday</h6>
             <img src="../src/img/svg/rainy.svg" alt="">
             <p class="dayTemp">21°C</p>
-        </div>
-        <div class="day">
-            <h6>Monday</h6>
-            <img src="../src/img/svg/cloudy-night.svg" alt="">
-            <p class="dayTemp">71</p>
-        </div>
-        <div class="day">
-            <h6>Monday</h6>
-            <img src="../src/img/svg/cloud.svg" alt="">
-            <h5 class="dayTemp">71</h5>
         </div>
         
     </div>
