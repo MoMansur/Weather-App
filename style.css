@@ -7,8 +7,6 @@ body {
 /*     
     background: rgb(27,48,50);
     background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%);  */
-
-
 }
 
 
@@ -18,20 +16,38 @@ body {
     justify-content: center;
     align-items: center;
     border-radius: 15px;
-    border: 1px solid black;
+    border: 8px solid rgba(30, 172, 211, 0);
     min-height: 90vh;
     width: 500px;
     padding: 10px;
     text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-form{
+
+
+#themeIcon{
+    text-align: end;
+    left: 78%;
+    border-radius: 50px;
+    border: 1px solid white;
+    padding: 5px;
+    position: fixed;
 }
+
+#themeIcon:hover{
+    background-color: black;
+}
+
 
 .locationIcon{
     font-size: 1.5rem;
     margin: 5px;
     margin-top: 4px;
+}
+.locationIcon:hover{
+    color: lightgreen;
+    font-size: 2rem;
 }
 
 .searchIn{

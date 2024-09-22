@@ -11,8 +11,10 @@
 <body>
    <div class="container">
     <div class="weatherCard">
+        <i class="fa-solid fa-moon" id="themeIcon"></i>    
 
-    <div class="row">
+
+    <div class="row" id="weatherTitleBox">
         <h1>Weather</h1>
     </div>
     <div class="row">
@@ -27,14 +29,20 @@
         <div class="mainData" id="mainData">
             
         <div class="loader" id="loader"></div>
-            <h1 class="cityName">Cairo</h1>
-            <p class="date">Sunday 27 August 2024</p>
+            <h1 class="cityName"></h1>
+            <p class="date"></p>
+
+
+            <div class="myLocationSpace" id="myLocationSpace">
+                <i class="fa-solid fa-location-dot locationIcon" id="myLocationIcon" style="font-size: 5rem;"></i>
+                <p>Current Location</p>
+            </div>
 
             <div id="tempRow">
                 <div class="row">                
                     <img src="" alt="" class="tempIcon">
                 </div>
-                <h2 class="temp">78°F</h2>
+                <h2 class="temp"></h2>
                 <button type="button" class="switchBtn">°C</button>
             </div>
         </div>
@@ -43,7 +51,7 @@
     <div class="row">
         <div class="condition">
             <p  id="descritptionText">
-                No rain Todya
+               
             </p>
         </div>
     </div>
@@ -51,9 +59,9 @@
     <div class="row">
         <div class="otherData">
             <ul>
-                <li><img src="../src/img/svg/feelsLike.svg" alt="">Feels Like <strong>78.1</strong></li>
-                <li><img src="../src/img/svg/humidity.svg" alt="">Humidity <strong>78.1</strong></li>
-                <li><img src="../src/img/svg/wind.svg" alt="">Wind Speed: <strong>78.1</strong></li>
+                <li><img src="../src/img/svg/feelsLike.svg" alt="">Feels Like <strong>?</strong></li>
+                <li><img src="../src/img/svg/humidity.svg" alt="">Humidity <strong>?</strong></li>
+                <li><img src="../src/img/svg/wind.svg" alt="">Wind Speed: <strong>?</strong></li>
             </ul>
         </div>
     </div>
@@ -74,9 +82,9 @@
 </div>
 
 
-    <div class="info">
-    <p class="fullAddress">Cairo Egypt</p>
-    <p class="TimeZone">20:00</p>
+    <div class="info" id="infoDown">
+    <p class="fullAddress"></p>
+    <p class="TimeZone"></p>
     </div>
 
     </div>
