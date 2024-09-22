@@ -29,6 +29,10 @@ const descritptionText = document.getElementById('descritptionText');
 const sunriseDom = document.querySelector('.sunrise');
 const sunsetDom = document.querySelector('.sunset');
 
+
+//
+const myLocationSpace = document.getElementById('myLocationSpace')
+const myLocationIcon = document.getElementById('myLocationIcon')
 // Other days elements
 const otherDays = document.querySelector('.otherDays');
 // const days = otherDays.querySelectorAll('.day');
@@ -56,6 +60,8 @@ async function displayWeatherData(location) {
     function displayer(array){
 
 
+        myLocationSpace.style.display = 'none'
+
         const feelsLike = Math.floor(array.feelslike);
         const humidity =  array.windspeed;
         const windSpeed = array.humidity;
@@ -64,7 +70,6 @@ async function displayWeatherData(location) {
         const address = array.resolvedAddress;
         const condition = array.conditions;
         const time = data.currentConditions.datetime
-        console.log(data)
         const date = '';
         const snow = array.snow;
         const timeZone = data.resolvedAddress;
@@ -74,11 +79,7 @@ async function displayWeatherData(location) {
 
         // const pastDaysData = a.days
 
-        const tempCel = function fahrenheitToCelsius(fahrenheit) {
-            let answer = (fahrenheit - 32) * 5 / 9;
-            return Math.floor(answer);
-        };
-
+     
           //APENDERING
         cityName.innerHTML = data.address;
         temperatureDom.innerHTML = `${temprature}°F`;
@@ -96,6 +97,8 @@ async function displayWeatherData(location) {
         windSpeedDom.innerHTML = `${windSpeed} km/h`;
 
     
+
+        
      // DATE
      const todaysDate = new Date();
      const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
@@ -103,7 +106,14 @@ async function displayWeatherData(location) {
      dateElement.innerHTML = formattedDate;
  
  
-     function celcuisFunction() {
+
+     const tempCel = function fahrenheitToCelsius(fahrenheit) {
+        let answer = (fahrenheit - 32) * 5 / 9;
+        return Math.floor(answer);
+    };
+
+
+     function celcuisFunction(temperatureDom, feelsLikeDom) {
          const convertion = `${tempCel(temprature)}°C`;
          temperatureDom.innerHTML = convertion;
          feelsLikeDom.innerHTML = `${tempCel(feelsLike)}°`;
@@ -139,7 +149,7 @@ refresher()
        let isClicked = true;
        switchButton.addEventListener('click', () => {
            if (isClicked) {
-               celcuisFunction();
+               celcuisFunction(temperatureDom, feelsLikeDom);
                switchButton.innerHTML = '°F';
             otherDays.innerHTML =""
             displayOtherDays(true)
@@ -161,11 +171,6 @@ refresher()
     
     
     displayer(weatherArr)
-
-   
-   
-
-  
    
 }
 
@@ -178,8 +183,6 @@ form.addEventListener('submit', (e) => {
     displayWeatherData(search);
 });
 
-displayWeatherData('Kenya');
-
 
 export function showLoader() {
     // mainDataDom.innerHTML = "";
@@ -190,6 +193,71 @@ export function hideLoader() {
 }
 
 
+import { getLocationAPI } from "./apiFunctions.js";
 
-// Example usage
+function getUserLocation(){
 
+
+navigator.geolocation.getCurrentPosition((position)=>{
+    let lat = position.coords.latitude
+    let long = position.coords.longitude
+
+    console.log(lat, long)
+    return getLocationAPI(lat, long)
+})
+
+}
+
+locationIcon.addEventListener('click', ()=>{
+    getUserLocation()
+    displayWeatherData(getUserLocation());
+})
+
+myLocationIcon.addEventListener('click', ()=>{
+    getUserLocation()
+    displayWeatherData(getUserLocation());
+})
+
+// displayWeatherData('Kenya');
+
+
+getLocationAPI()
+
+function notPermittedDOM(){
+    hideLoader()
+    cityName.innerHTML = "Permission not granted"
+    cityName.style.fontSize = '35px'
+    
+    tempIcon.style.display ='none'
+
+
+
+}
+
+notPermittedDOM()
+
+function theme(){
+    const themeIcon = document.getElementById('themeIcon')
+    
+   let  isClicked = true
+
+
+    themeIcon.addEventListener('click', ()=>{
+
+        if(isClicked){
+            document.body.style.background ='rgb(27,48,50)'
+            document.body.style.background= 'linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%)'
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+
+        }else{
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+
+            document.body.style.background = 'rgb(45,234,253)'
+            document.body.style.background = 'linear-gradient(0deg, rgba(45,234,253,1) 0%, rgba(34,127,195,1) 100%)'
+        }
+        isClicked = !isClicked
+
+    })
+}
+
+theme()

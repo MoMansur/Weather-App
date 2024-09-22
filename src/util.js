@@ -29,6 +29,7 @@ export function getDayOfWeek(dateString) {
     return daysOfWeek[dayIndex];
 }
 
+
 export function convertTo12HourFormat(time) {
     const [hours, minutes, seconds] = time.split(':');
     let period = 'AM';
