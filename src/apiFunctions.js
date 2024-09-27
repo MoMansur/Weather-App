@@ -1,5 +1,6 @@
 import { hideLoader } from "./index.js";
 import { showLoader } from "./index.js";
+import { ifErrorFound } from "./index.js";
 
 const apiKey = '4LWKKC37PQN38RC3D64Q5NU3B'
 export async function weatherData(location) {
@@ -11,6 +12,7 @@ export async function weatherData(location) {
         hideLoader()
         return data;
     } catch (err) {
+        ifErrorFound('City not found')
         console.log('error found');
         hideLoader();
     }
@@ -28,19 +30,12 @@ export async function getLocationAPI(lat, long) {
 
         const cityName = document.querySelector('.cityName');
         cityName.innerHTML = DtimeZOneEdit
-        console.log(DtimeZOneEdit)
-
         
         return data;
     } catch (err) {
         console.log('Permission not given')
-
         const info = document.getElementById('infoDown')
-
         info.innerHTML = ''
-
-        
-
     }
 }
 

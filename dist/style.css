@@ -3,13 +3,18 @@ body {
     background: linear-gradient(0deg, rgba(45,234,253,1) 0%, rgba(34,127,195,1) 100%);
     min-height: 100vh;
     padding: 10px;
-
+    margin: auto;
 /*     
     background: rgb(27,48,50);
     background: linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%);  */
 }
 
-
+.container{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    /* flex-direction: column; */
+}
 .weatherCard{
     color: white;
     display: block;
@@ -28,11 +33,11 @@ body {
 
 #themeIcon{
     text-align: end;
-    left: 78%;
-    border-radius: 50px;
+    left: 48%;
+    border-radius: 100%;
     border: 1px solid white;
     padding: 5px;
-    position: fixed;
+    position:relative;
 }
 
 #themeIcon:hover{

@@ -3,6 +3,10 @@ import { convertTo12HourFormat } from "./util.js";
 import { weatherData } from "./apiFunctions.js";
 import { getDayOfWeek } from "./util.js";
 import { getWeatherIcon } from "./util.js";
+import { theme } from "./util.js";
+import { getLocationAPI } from "./apiFunctions.js";
+
+
 // Form elements
 const formElement = document.getElementById('form');
 const locationIcon = document.querySelector('.locationIcon');
@@ -29,7 +33,6 @@ const descritptionText = document.getElementById('descritptionText');
 const sunriseDom = document.querySelector('.sunrise');
 const sunsetDom = document.querySelector('.sunset');
 
-
 //
 const myLocationSpace = document.getElementById('myLocationSpace')
 const myLocationIcon = document.getElementById('myLocationIcon')
@@ -41,12 +44,10 @@ const dayElement = document.querySelector('.day');
 // const dayIconElement = dayElement.querySelector('img');
 const dayTempElement = document.querySelectorAll('.dayTemp');
 
-
 // Info elements
 const fullAddress = document.querySelector('.fullAddress');
 const timeZoneDom = document.querySelector('.TimeZone');
 
-const loaderDom = document.getElementById('loader')
 
 
 async function displayWeatherData(location) {
@@ -54,12 +55,9 @@ async function displayWeatherData(location) {
 
     const weatherArr = data.days[0]
     const otherDaysArr = data.days
-
     console.log(weatherArr)
 
     function displayer(array){
-
-
         myLocationSpace.style.display = 'none'
 
         const feelsLike = Math.floor(array.feelslike);
@@ -77,9 +75,6 @@ async function displayWeatherData(location) {
         const sunrise = array.sunrise;
         const sunset = array.sunset;
 
-        // const pastDaysData = a.days
-
-     
           //APENDERING
         cityName.innerHTML = data.address;
         temperatureDom.innerHTML = `${temprature}°F`;
@@ -89,36 +84,28 @@ async function displayWeatherData(location) {
         sunsetDom.innerHTML = sunset;
         fullAddress.innerHTML = timeZone;
 
-
         tempIcon.src = `../src/img/svg/${getWeatherIcon(data.currentConditions.icon)}`
-        
+     
         humidityDom.innerHTML = `${humidity}%`;
         feelsLikeDom.innerHTML = `${feelsLike}°`;
         windSpeedDom.innerHTML = `${windSpeed} km/h`;
 
-    
-
-        
      // DATE
      const todaysDate = new Date();
      const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
      const formattedDate = todaysDate.toLocaleDateString('en-US', options);
      dateElement.innerHTML = formattedDate;
- 
- 
 
      const tempCel = function fahrenheitToCelsius(fahrenheit) {
         let answer = (fahrenheit - 32) * 5 / 9;
         return Math.floor(answer);
     };
 
-
      function celcuisFunction(temperatureDom, feelsLikeDom) {
          const convertion = `${tempCel(temprature)}°C`;
          temperatureDom.innerHTML = convertion;
          feelsLikeDom.innerHTML = `${tempCel(feelsLike)}°`;
      }
- 
  
      function displayOtherDays(isCelsius) {
         // Clear existing content
@@ -138,13 +125,12 @@ async function displayWeatherData(location) {
         }
     }
 
-
-     function refresher(){
+    function refresher(){
         otherDays.innerHTML = ""
         displayOtherDays(false)
 
      }
-refresher()
+    refresher()
     
        let isClicked = true;
        switchButton.addEventListener('click', () => {
@@ -152,26 +138,20 @@ refresher()
                celcuisFunction(temperatureDom, feelsLikeDom);
                switchButton.innerHTML = '°F';
             otherDays.innerHTML =""
-            displayOtherDays(true)
-              
-            
+            displayOtherDays(true)   
            } else {
               temperatureDom.innerHTML = `${temprature}°F`;
               feelsLikeDom.innerHTML = `${feelsLike}°`;
               switchButton.innerHTML = '°C';
               otherDays.innerHTML =""
-
               refresher()
-
            }
            isClicked = !isClicked;
        });
 
     }
     
-    
-    displayer(weatherArr)
-   
+    displayer(weatherArr) 
 }
 
 const form = document.getElementById('form');
@@ -184,6 +164,7 @@ form.addEventListener('submit', (e) => {
 });
 
 
+const loaderDom = document.getElementById('loader')
 export function showLoader() {
     // mainDataDom.innerHTML = "";
     loaderDom.style.display = 'block';
@@ -193,11 +174,8 @@ export function hideLoader() {
 }
 
 
-import { getLocationAPI } from "./apiFunctions.js";
 
 function getUserLocation(){
-
-
 navigator.geolocation.getCurrentPosition((position)=>{
     let lat = position.coords.latitude
     let long = position.coords.longitude
@@ -215,49 +193,28 @@ locationIcon.addEventListener('click', ()=>{
 
 myLocationIcon.addEventListener('click', ()=>{
     getUserLocation()
-    displayWeatherData(getUserLocation());
 })
 
 // displayWeatherData('Kenya');
 
 
-getLocationAPI()
+displayWeatherData(getUserLocation());
 
 function notPermittedDOM(){
     hideLoader()
     cityName.innerHTML = "Permission not granted"
-    cityName.style.fontSize = '35px'
-    
+    cityName.style.fontSize = '35px'  
     tempIcon.style.display ='none'
-
-
-
 }
 
-notPermittedDOM()
-
-function theme(){
-    const themeIcon = document.getElementById('themeIcon')
-    
-   let  isClicked = true
-
-
-    themeIcon.addEventListener('click', ()=>{
-
-        if(isClicked){
-            document.body.style.background ='rgb(27,48,50)'
-            document.body.style.background= 'linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%)'
-            themeIcon.classList.replace('fa-moon', 'fa-sun');
-
-        }else{
-            themeIcon.classList.replace('fa-sun', 'fa-moon');
-
-            document.body.style.background = 'rgb(45,234,253)'
-            document.body.style.background = 'linear-gradient(0deg, rgba(45,234,253,1) 0%, rgba(34,127,195,1) 100%)'
-        }
-        isClicked = !isClicked
-
-    })
-}
+// notPermittedDOM()
 
 theme()
+
+export function ifErrorFound(message){
+    cityName.innerHTML = message
+    dateElement.innerHTML = ''
+    // tempRow.innerHTML = ""
+    descritptionText.innerHTML = ""
+    // otherData.innerHTML = ""
+}

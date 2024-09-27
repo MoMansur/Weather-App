@@ -1,6 +1,6 @@
 
 export function getWeatherIcon(condition) {
-    if (condition.includes('Rain') || condition.includes('Cloudy')) {
+    if (condition.includes('Rain') || condition.includes('cloudy')) {
         return 'rainy.svg'; 
     } else if (condition.includes('Rain')) {
         return 'rainy.svg'; // Example icon filename
@@ -76,3 +76,22 @@ export function convertTo12HourFormat(time) {
     return formattedTime;
 }
 
+
+export function theme(){
+    const themeIcon = document.getElementById('themeIcon')
+    const footer = document.getElementsByTagName('footer')
+
+   let  isClicked = true
+    themeIcon.addEventListener('click', ()=>{
+        if(isClicked){
+            document.body.style.background ='rgb(27,48,50)'
+            document.body.style.background= 'linear-gradient(0deg, rgba(27,48,50,1) 0%, rgba(42,105,150,1) 100%)'
+            themeIcon.classList.replace('fa-moon', 'fa-sun');
+        }else{
+            themeIcon.classList.replace('fa-sun', 'fa-moon');
+            document.body.style.background = 'rgb(45,234,253)'
+            document.body.style.background = 'linear-gradient(0deg, rgba(45,234,253,1) 0%, rgba(34,127,195,1) 100%)'
+        }
+        isClicked = !isClicked
+    })
+}
